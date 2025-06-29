@@ -5,31 +5,9 @@ import {
   ReactNode,
   useMemo,
 } from 'react';
-
-export type Gap =
-  | 1
-  | 2
-  | 4
-  | 8
-  | 12
-  | 16
-  | 20
-  | 24
-  | 28
-  | 32
-  | 36
-  | 40
-  | 44
-  | 48
-  | true;
-
-let defaultGap = 8;
-
-export function setDefaultGap(gap: number) {
-  defaultGap = gap;
-}
-
-const resolveGap = (gap: Gap | undefined) => (gap === true ? defaultGap : gap);
+import { AcceptsStyle, AsProp, PropsToOmit } from './Types.js';
+import { resolveGap, type Gap } from './Gap.tsx';
+export { setDefaultGap, type Gap } from './Gap.tsx';
 
 type StackOwnProps = {
   alignCenter?: true;
@@ -56,19 +34,9 @@ type StackOwnProps = {
   shrink0?: true;
   start?: true;
   stretch?: true;
-  style?: CSSProperties;
   vertical?: true;
   verticalPadding?: Gap;
 };
-
-type AcceptsStyle<C extends ElementType> =
-  'style' extends keyof ComponentProps<C> ? C : never;
-
-type AsProp<Component extends ElementType> = { as?: Component };
-type PropsToOmit<
-  Component extends ElementType,
-  Props,
-> = keyof (AsProp<Component> & Props);
 
 export type StackProps<Component extends ElementType = 'div'> =
   AcceptsStyle<Component> extends never
