@@ -93,7 +93,6 @@ export default function Stack<Component extends ElementType = 'div'>({
   horizontalPadding,
   inline,
   nowrap,
-  order,
   padding,
   reverse,
   rowGap: _rowGap,
@@ -141,7 +140,6 @@ export default function Stack<Component extends ElementType = 'div'>({
               : around
                 ? 'space-around'
                 : 'space-between',
-      order,
     };
 
     const gap = resolveGap(_gap);
@@ -200,7 +198,6 @@ export default function Stack<Component extends ElementType = 'div'>({
     horizontalPadding,
     inline,
     nowrap,
-    order,
     padding,
     reverse,
     shrink0,

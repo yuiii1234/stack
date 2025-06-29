@@ -355,21 +355,6 @@ test('renders with baseline alignment', () => {
   `);
 });
 
-test('supports order prop', () => {
-  const { container } = render(
-    <Stack alignStart order={2}>
-      Content
-    </Stack>,
-  );
-  expect(container.firstChild).toMatchInlineSnapshot(`
-    <div
-      style="align-items: flex-start; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; order: 2;"
-    >
-      Content
-    </div>
-  `);
-});
-
 test('renders with rowGap only', () => {
   const { container } = render(<Stack rowGap={16}>Content</Stack>);
   expect(container.firstChild).toMatchInlineSnapshot(`
