@@ -1,6 +1,7 @@
-import { CSSProperties, ElementType, useMemo } from 'react';
+import { ElementType, useMemo } from 'react';
 import { StackProps } from './Types.js';
 import { resolveGap } from './Gap.tsx';
+import { View, ViewStyle } from 'react-native';
 export { setDefaultGap, type Gap } from './Gap.tsx';
 export { type StackProps } from './Types.js';
 
@@ -33,7 +34,7 @@ export default function Stack<Component extends ElementType = 'div'>({
   ...props
 }: StackProps<Component>) {
   const baseStyle = useMemo(() => {
-    const baseStyle: CSSProperties = {
+    const baseStyle: ViewStyle = {
       alignItems: alignStart
         ? 'flex-start'
         : alignCenter
@@ -43,8 +44,12 @@ export default function Stack<Component extends ElementType = 'div'>({
             : baseline
               ? 'baseline'
               : undefined,
-      alignSelf,
-      display: inline ? 'inline-flex' : 'flex',
+      alignSelf:
+        alignSelf === 'start'
+          ? 'flex-start'
+          : alignSelf === 'end'
+            ? 'flex-end'
+            : alignSelf,
       flex: flex1 ? 1 : undefined,
       flexDirection: vertical
         ? reverse
@@ -123,7 +128,6 @@ export default function Stack<Component extends ElementType = 'div'>({
     evenly,
     flex1,
     horizontalPadding,
-    inline,
     nowrap,
     padding,
     reverse,
@@ -134,6 +138,6 @@ export default function Stack<Component extends ElementType = 'div'>({
     verticalPadding,
   ]);
 
-  const Component = as || 'div';
-  return <Component style={{ ...baseStyle, ...style }} {...props} />;
+  const Component = as || View;
+  return <Component style={[baseStyle, style]} {...props} />;
 }

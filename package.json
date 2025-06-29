@@ -1,7 +1,7 @@
 {
   "name": "@nkzw/stack",
-  "version": "1.0.0",
-  "description": "Zero-dependency, type-safe Stack component for streamlining flexbox usage in React.",
+  "version": "1.1.0",
+  "description": "Zero-dependency, type-safe Stack component for streamlining flexbox usage in React & React Native.",
   "homepage": "https://github.com/nkzw-tech/stack",
   "repository": {
     "type": "git",
@@ -13,13 +13,19 @@
     "email": "christoph.pojer@gmail.com"
   },
   "type": "module",
+  "exports": {
+    ".": {
+      "react-native": "./lib/index.native.js",
+      "default": "./lib/index.js"
+    }
+  },
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "mkdir -p lib && tsdown src/index.tsx -d lib --target=node22 --format=esm --clean --dts",
+    "build": "mkdir -p lib && tsdown src/index.tsx -d lib --target=node22 --format=esm --clean --dts && tsdown src/index.native.tsx -d lib --target=node22 --no-clean --format=esm --dts",
     "format": "prettier --experimental-cli --write .",
     "lint": "eslint --cache .",
     "lint:format": "prettier --experimental-cli --cache --check .",
@@ -43,11 +49,18 @@
     "prettier": "^3.6.0",
     "prettier-plugin-packagejson": "^2.5.15",
     "react": "^19.1.0",
+    "react-native": "^0.80.0",
     "tsdown": "^0.12.8",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "react-native": "^0.78.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
   }
 }
