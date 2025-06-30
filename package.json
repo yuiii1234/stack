@@ -1,6 +1,6 @@
 {
   "name": "@nkzw/stack",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Zero-dependency, type-safe Stack component for streamlining flexbox usage in React & React Native.",
   "homepage": "https://github.com/nkzw-tech/stack",
   "repository": {
@@ -25,7 +25,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "mkdir -p lib && tsdown src/index.tsx -d lib --platform=browser --format=esm --clean --dts && tsdown src/index.native.tsx -d lib --platform=browser --no-clean --format=esm --dts",
+    "build": "mkdir -p lib && tsdown --clean --platform=browser src/index.tsx && tsdown --no-clean src/index.native.tsx",
     "format": "prettier --experimental-cli --write .",
     "lint": "eslint --cache .",
     "lint:format": "prettier --experimental-cli --cache --check .",
