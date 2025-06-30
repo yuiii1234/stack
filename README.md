@@ -7,8 +7,8 @@ No matter which styling solution you use, flexbox always create visual clutter a
 ```tsx
 <Stack vertical gap center>
   <div>Apple</div>
-  <div>Banana</div>
-  <div>Kiwi</div>
+  <View>Banana</View>
+  <Item>Kiwi</Item>
 </Stack>
 ```
 
