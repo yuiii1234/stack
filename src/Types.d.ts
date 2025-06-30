@@ -17,7 +17,6 @@ type StackPropsInternal = {
   horizontalPadding?: Gap;
   inline?: true;
   nowrap?: true;
-  order?: number;
   padding?: Gap;
   reverse?: true;
   rowGap?: Gap;

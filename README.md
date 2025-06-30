@@ -1,6 +1,6 @@
 # `@nkzw/stack`
 
-_Zero-dependency, type-safe Stack component for streamlining flexbox usage in React._
+_Zero-dependency, type-safe Stack component for streamlining flexbox usage in React & React Native._
 
 No matter which styling solution you use, flexbox always create visual clutter and boilerplate. `<Stack />` supports all flexbox properties directly as named props, making your flexbox components visually cleaner and easier to read. For most use cases, you'll only need prop shorthands like `gap`, `vertical`, `center`, and `padding`:
 
@@ -16,8 +16,9 @@ Other benefits include:
 
 - **Minimal API:** Easily control direction, spacing, alignment, and more using shorthand props.
 - **Consistent spacing:** Enforces 4px grid for gap values via TypeScript.
+- **Cross Platform:** Works the same in React and React Native.
 - **Flexible padding:** Automatically derives padding from gap or accepts custom values.
-- **Built-in flex controls:** Includes props like flex1, shrink0, order, self, and alignment utilities.
+- **Built-in flex controls:** Includes props like flex1, shrink0, self, and alignment utilities.
 - **Polymorphic by design:** Render as any HTML or custom component via the `as` prop while maintaining full type safety.
 
 ## Installation
@@ -31,7 +32,7 @@ npm install @nkzw/stack
 ### Vertical Layout and Gap
 
 ```tsx
-import Stack from '@your-org/stack';
+import Stack from '@nkzw/stack';
 
 // Horizontal layout (default).
 <Stack gap={16}>
@@ -52,6 +53,18 @@ import Stack from '@your-org/stack';
   <div>Apple</div>
   <div>Banana</div>
 </Stack>
+```
+
+Or with React Native:
+
+```tsx
+import Stack from '@nkzw/stack/native';
+
+<Stack vertical gap={16}>
+  <Text>Apple</Text>
+  <Text>Banana</Text>
+  <Text>Kiwi</Text>
+</Stack>;
 ```
 
 ### Padding
@@ -196,12 +209,6 @@ import Stack from '@your-org/stack';
 <Stack shrink0>
   <div>Won't shrink</div>
 </Stack>
-
-// Custom order.
-<Stack vertical>
-  <Stack order={2}>Second in order</Stack>
-  <Stack>First in order</Stack>
-</Stack>
 ```
 
 ## Self Alignment
@@ -261,7 +268,7 @@ Available gap values: `1`, `2`, `4`, `8`, `12`, `16`, `20`, `24`, `28`, `32`, `3
 You can set the default gap value globally:
 
 ```tsx
-import { setDefaultGap } from '@your-org/stack';
+import { setDefaultGap } from '@nkzw/stack';
 
 setDefaultGap(12); // Now gap={true} will use 12px.
 ```
