@@ -148,11 +148,6 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
   <div>Centered</div>
 </Stack>
 
-// Align to start.
-<Stack start>
-  <div>At start</div>
-</Stack>
-
 // Align to end.
 <Stack end>
   <div>At end</div>
@@ -162,6 +157,11 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
 <Stack around>
   <div>Apple</div>
   <div>Banana</div>
+</Stack>
+
+// Align between.
+<Stack between>
+  <div>Between</div>
 </Stack>
 
 // Space evenly.
@@ -174,6 +174,20 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
 <Stack>
   <div>Apple</div>
   <div>Banana</div>
+</Stack>
+```
+
+On web, the `safe` prop is supported too:
+
+```tsx
+// Renders with `justify-content: safe center`.
+<Stack center safe>
+  <div>Centered</div>
+</Stack>
+
+// Renders with `justify-content: safe flex-end`.
+<Stack end safe>
+  <div>At end</div>
 </Stack>
 ```
 
@@ -243,6 +257,18 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
 </Stack>
 ```
 
+## Content Alignment
+
+```tsx
+<Stack content="center">
+  <div>Content</div>
+</Stack>
+
+<Stack content="start">
+  <div>Content</div>
+</Stack>
+```
+
 ## Layout Options
 
 ```tsx
@@ -263,8 +289,8 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
   <div>Banana (appears at top)</div>
 </Stack>
 
-// No wrapping.
-<Stack nowrap>
+// Wrap (`flex-wrap: nowrap` is the default).
+<Stack wrap>
   <div>Apple</div>
   <div>Banana</div>
   <div>Kiwi</div>
@@ -352,3 +378,12 @@ Stack carries over component props from custom components in a type-safe manner:
   </Stack>
 </Stack>
 ```
+
+### Flexbox Defaults
+
+Flexbox on web and on React Natie use different default values for `flexDirection`, `alignContent` and `flexShrink`. `<Stack />` uses these defaults for both platforms:
+
+- `flexDirection: 'row'`
+- `alignContent: 'flex-start'`
+
+`flexShrink` is set to `1` by default on web and `0` on React Native.

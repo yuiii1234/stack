@@ -6,6 +6,7 @@ import {
   StackPropsInternal,
 } from './Types.js';
 import { resolveGap } from './Gap.tsx';
+import { resolveAlignment } from './Alignment.tsx';
 export { setDefaultGap, type Gap } from './Gap.tsx';
 
 export type StackProps<Component extends ElementType = 'div'> =
@@ -25,29 +26,32 @@ export default function Stack<Component extends ElementType = 'div'>({
   around,
   as,
   baseline,
+  between,
   center,
   columnGap: _columnGap,
+  content,
   end,
   evenly,
   flex1,
   gap: _gap,
   horizontalPadding,
   inline,
-  nowrap,
   padding,
   reverse,
   rowGap: _rowGap,
-  self: alignSelf,
+  safe,
+  self,
   shrink0,
-  start,
   stretch,
   style,
   vertical,
   verticalPadding,
+  wrap,
   ...props
 }: StackProps<Component>) {
   const baseStyle = useMemo(() => {
     const baseStyle: CSSProperties = {
+      alignContent: resolveAlignment(content),
       alignItems: alignStart
         ? 'flex-start'
         : alignCenter
@@ -57,7 +61,7 @@ export default function Stack<Component extends ElementType = 'div'>({
             : baseline
               ? 'baseline'
               : undefined,
-      alignSelf,
+      alignSelf: resolveAlignment(self),
       display: inline ? 'inline-flex' : 'flex',
       flex: flex1 ? 1 : undefined,
       flexDirection: vertical
@@ -69,18 +73,18 @@ export default function Stack<Component extends ElementType = 'div'>({
           : 'row',
       flexGrow: stretch ? 1 : undefined,
       flexShrink: shrink0 ? 0 : undefined,
-      flexWrap: nowrap ? 'nowrap' : 'wrap',
+      flexWrap: wrap ? 'wrap' : 'nowrap',
       justifyContent: center
-        ? 'center'
-        : start
-          ? 'flex-start'
-          : end
-            ? 'flex-end'
+        ? `${safe ? 'safe ' : ''}center`
+        : end
+          ? `${safe ? 'safe ' : ''}flex-end`
+          : between
+            ? 'space-between'
             : evenly
               ? 'space-evenly'
               : around
                 ? 'space-around'
-                : 'space-between',
+                : 'flex-start',
     };
 
     const gap = resolveGap(_gap);
@@ -128,24 +132,26 @@ export default function Stack<Component extends ElementType = 'div'>({
     _rowGap,
     alignCenter,
     alignEnd,
-    alignSelf,
     alignStart,
     around,
     baseline,
+    between,
     center,
+    content,
     end,
     evenly,
     flex1,
     horizontalPadding,
     inline,
-    nowrap,
     padding,
     reverse,
+    safe,
+    self,
     shrink0,
-    start,
     stretch,
     vertical,
     verticalPadding,
+    wrap,
   ]);
 
   const Component = as || 'div';

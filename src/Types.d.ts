@@ -1,31 +1,44 @@
 import { ElementType, ComponentProps, ReactNode } from 'react';
 import { Gap } from './Gap.tsx';
 
+export type AlignContent =
+  | 'start'
+  | 'end'
+  | 'center'
+  | 'stretch'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
+
+export type AlignSelf = 'center' | 'end' | 'start' | 'stretch' | 'baseline';
+
 export type StackPropsInternal = {
   alignCenter?: true;
   alignEnd?: true;
   alignStart?: true;
   around?: true;
   baseline?: true;
+  between?: true;
   center?: true;
   children?: ReactNode;
   columnGap?: Gap;
+  content?: AlignContent;
   end?: true;
   evenly?: true;
   flex1?: true;
   gap?: Gap;
   horizontalPadding?: Gap;
   inline?: true;
-  nowrap?: true;
   padding?: Gap;
   reverse?: true;
   rowGap?: Gap;
-  self?: 'center' | 'end' | 'start' | 'stretch';
+  safe?: true;
+  self?: AlignSelf;
   shrink0?: true;
-  start?: true;
   stretch?: true;
   vertical?: true;
   verticalPadding?: Gap;
+  wrap?: true;
 };
 
 export type AcceptsStyle<C extends ElementType> =

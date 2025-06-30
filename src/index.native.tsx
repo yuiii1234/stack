@@ -7,6 +7,7 @@ import {
   PropsToOmit,
   StackPropsInternal,
 } from './Types.js';
+import { resolveAlignment } from './Alignment.tsx';
 export { setDefaultGap, type Gap } from './Gap.tsx';
 
 type ViewWithClassName = ViewProps & {
@@ -34,29 +35,32 @@ let Stack = function Stack<
   around,
   as,
   baseline,
+  between,
   center,
   columnGap: _columnGap,
+  content,
   end,
   evenly,
   flex1,
   gap: _gap,
   horizontalPadding,
   inline,
-  nowrap,
   padding,
   reverse,
   rowGap: _rowGap,
-  self: alignSelf,
+  safe,
+  self,
   shrink0,
-  start,
   stretch,
   style,
   vertical,
   verticalPadding,
+  wrap,
   ...props
 }: StackProps<Component>) {
   const baseStyle = useMemo(() => {
     const baseStyle: ViewStyle = {
+      alignContent: resolveAlignment(content),
       alignItems: alignStart
         ? 'flex-start'
         : alignCenter
@@ -66,12 +70,7 @@ let Stack = function Stack<
             : baseline
               ? 'baseline'
               : undefined,
-      alignSelf:
-        alignSelf === 'start'
-          ? 'flex-start'
-          : alignSelf === 'end'
-            ? 'flex-end'
-            : alignSelf,
+      alignSelf: resolveAlignment(self),
       flex: flex1 ? 1 : undefined,
       flexDirection: vertical
         ? reverse
@@ -82,18 +81,18 @@ let Stack = function Stack<
           : 'row',
       flexGrow: stretch ? 1 : undefined,
       flexShrink: shrink0 ? 0 : undefined,
-      flexWrap: nowrap ? 'nowrap' : 'wrap',
+      flexWrap: wrap ? 'wrap' : 'nowrap',
       justifyContent: center
         ? 'center'
-        : start
-          ? 'flex-start'
-          : end
-            ? 'flex-end'
+        : end
+          ? 'flex-end'
+          : between
+            ? 'space-between'
             : evenly
               ? 'space-evenly'
               : around
                 ? 'space-around'
-                : 'space-between',
+                : 'flex-start',
     };
 
     const gap = resolveGap(_gap);
@@ -141,23 +140,24 @@ let Stack = function Stack<
     _rowGap,
     alignCenter,
     alignEnd,
-    alignSelf,
     alignStart,
     around,
     baseline,
+    between,
     center,
+    content,
     end,
     evenly,
     flex1,
     horizontalPadding,
-    nowrap,
     padding,
     reverse,
+    self,
     shrink0,
-    start,
     stretch,
     vertical,
     verticalPadding,
+    wrap,
   ]);
 
   const Component = as || View;
