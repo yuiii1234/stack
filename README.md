@@ -2,7 +2,7 @@
 
 _Zero-dependency, type-safe Stack component for streamlining flexbox usage in React & React Native._
 
-No matter which styling solution you use, flexbox always create visual clutter and boilerplate. `<Stack />` supports all flexbox properties directly as named props, making your flexbox components visually cleaner and easier to read. For most use cases, you'll only need prop shorthands like `gap`, `vertical`, `center`, and `padding`:
+You always end up with visual clutter and boilerplate when using flexbox, no matter which styling solution you choose. `<Stack />` supports all flexbox properties directly as named props, making your flexbox components visually cleaner and easier to read. For most use cases, you'll only need prop shorthands like `gap`, `vertical`, `center`, and `padding`:
 
 ```tsx
 <Stack vertical gap center>
@@ -15,16 +15,70 @@ No matter which styling solution you use, flexbox always create visual clutter a
 Other benefits include:
 
 - **Minimal API:** Easily control direction, spacing, alignment, and more using shorthand props.
-- **Consistent spacing:** Enforces 4px grid for gap values via TypeScript.
-- **Cross Platform:** Works the same in React and React Native.
+- **Sensible Defaults:** Ships with sensible cross-platform defaults for React & React Native.
+- **Consistent spacing:** Enforces 4px grid for gap & padding values via TypeScript.
 - **Flexible padding:** Automatically derives padding from gap or accepts custom values.
-- **Built-in flex controls:** Includes props like flex1, shrink0, self, and alignment utilities.
 - **Polymorphic by design:** Render as any HTML or custom component via the `as` prop while maintaining full type safety.
 
 ## Installation
 
 ```bash
 npm install @nkzw/stack
+```
+
+## Flexbox Defaults
+
+If you are rendering a `<Stack />` component without any props, it will render like this:
+
+```tsx
+<div
+  style={{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'flex-start',
+  }}
+/>
+```
+
+Unlike the default flexbox styles on web, `justify-content` is using `flex-start` instead of `start`. Flexbox on web and on React Natie use different default values for `flexDirection`, `alignContent` and `flexShrink`. `<Stack />` uses these defaults for both platforms:
+
+- `flexDirection: 'row'`
+- `alignContent: 'flex-start'`
+
+`flexShrink` is set to `1` by default on web and `0` on React Native.
+
+## Props
+
+```tsx
+type StackPropsInternal = {
+  alignCenter?: true; // `align-items: center`
+  alignEnd?: true; // `align-items: flex-end`
+  alignStart?: true; // `align-items: center`
+  around?: true; // `justify-content: space-around`
+  baseline?: true; // `align-items: baseline`
+  between?: true; // `justify-content: space-between`
+  center?: true; // `justify-content: center`
+  children?: ReactNode;
+  columnGap?: Gap; // `column-gap: <Gap>`
+  content?: AlignContent; // `align-content: start | end | center | stretch | space-between | space-around | space-evenly`
+  end?: true; // `justify-content: flex-end`
+  evenly?: true; // `justify-content: space-evenly`
+  flex1?: true; // `flex: 1`
+  gap?: Gap; // `gap: <Gap>`
+  horizontalPadding?: Gap; // `padding-left` and `padding-right` set to the same value as `gap` when true or a <Gap> value.
+  inline?: true; // `display: inline-flex` (*web only*)
+  padding?: Gap; // `padding: <Gap>` or `padding: 8px` when `gap` is `true`.
+  reverse?: true; // `flex-direction: row-reverse` or `flex-direction: column-reverse` when `vertical` is `true`.
+  rowGap?: Gap; // `row-gap: <Gap>`
+  safe?: true; // When used with `center` or `end`: `justify-content: safe center | safe flex-end`
+  self?: AlignSelf; // `align-self: center | end | start | stretch | baseline`
+  shrink0?: true; // `flex-shrink: 0`
+  stretch?: true; // `flex-grow: 1`
+  vertical?: true; // `flex-direction: column`
+  verticalPadding?: Gap; // `padding-top` and `padding-bottom` set to the same value as `gap` when true or a <Gap> value.
+  wrap?: true; // `flex-wrap: wrap`
+};
 ```
 
 ## Usage
@@ -378,12 +432,3 @@ Stack carries over component props from custom components in a type-safe manner:
   </Stack>
 </Stack>
 ```
-
-### Flexbox Defaults
-
-Flexbox on web and on React Natie use different default values for `flexDirection`, `alignContent` and `flexShrink`. `<Stack />` uses these defaults for both platforms:
-
-- `flexDirection: 'row'`
-- `alignContent: 'flex-start'`
-
-`flexShrink` is set to `1` by default on web and `0` on React Native.
