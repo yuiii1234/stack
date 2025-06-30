@@ -28,7 +28,7 @@ npm install @nkzw/stack
 
 ## Flexbox Defaults
 
-If you are rendering a `<Stack />` component without any props, it will render like this:
+Using a `<Stack />` component without any props renders it like this:
 
 ```tsx
 <div
@@ -50,34 +50,37 @@ Unlike the default flexbox styles on web, `justify-content` is using `flex-start
 
 ## Props
 
+Props for `<Stack /> are meant to be mostly static and passed as shorthand only, without any values.
+
 ```tsx
-type StackPropsInternal = {
-  alignCenter?: true; // `align-items: center`
-  alignEnd?: true; // `align-items: flex-end`
-  alignStart?: true; // `align-items: center`
-  around?: true; // `justify-content: space-around`
-  baseline?: true; // `align-items: baseline`
-  between?: true; // `justify-content: space-between`
-  center?: true; // `justify-content: center`
+type StackProps = {
+  alignCenter?: boolean; // `align-items: center`
+  alignEnd?: boolean; // `align-items: flex-end`
+  alignStart?: boolean; // `align-items: center`
+  around?: boolean; // `justify-content: space-around`
+  as: ElementType; // The element to render, defaults to `<div />` on the web, and `<View />` on React Native.
+  baseline?: boolean; // `align-items: baseline`
+  between?: boolean; // `justify-content: space-between`
+  center?: boolean; // `justify-content: center`
   children?: ReactNode;
   columnGap?: Gap; // `column-gap: <Gap>`
   content?: AlignContent; // `align-content: start | end | center | stretch | space-between | space-around | space-evenly`
-  end?: true; // `justify-content: flex-end`
-  evenly?: true; // `justify-content: space-evenly`
-  flex1?: true; // `flex: 1`
+  end?: boolean; // `justify-content: flex-end`
+  evenly?: boolean; // `justify-content: space-evenly`
+  flex1?: boolean; // `flex: 1`
   gap?: Gap; // `gap: <Gap>`
-  horizontalPadding?: Gap; // `padding-left` and `padding-right` set to the same value as `gap` when true or a <Gap> value.
-  inline?: true; // `display: inline-flex` (*web only*)
+  horizontalPadding?: Gap; // `padding-left` and `padding-right` set to the same value as `gap` when boolean or a <Gap> value.
+  inline?: boolean; // `display: inline-flex` (*web only*)
   padding?: Gap; // `padding: <Gap>` or `padding: 8px` when `gap` is `true`.
-  reverse?: true; // `flex-direction: row-reverse` or `flex-direction: column-reverse` when `vertical` is `true`.
+  reverse?: boolean; // `flex-direction: row-reverse` or `flex-direction: column-reverse` when `vertical` is `true`.
   rowGap?: Gap; // `row-gap: <Gap>`
-  safe?: true; // When used with `center` or `end`: `justify-content: safe center | safe flex-end`
+  safe?: boolean; // When used with `center` or `end`: `justify-content: safe center | safe flex-end`
   self?: AlignSelf; // `align-self: center | end | start | stretch | baseline`
-  shrink0?: true; // `flex-shrink: 0`
-  stretch?: true; // `flex-grow: 1`
-  vertical?: true; // `flex-direction: column`
+  shrink0?: boolean; // `flex-shrink: 0`
+  stretch?: boolean; // `flex-grow: 1`
+  vertical?: boolean; // `flex-direction: column`
   verticalPadding?: Gap; // `padding-top` and `padding-bottom` set to the same value as `gap` when true or a <Gap> value.
-  wrap?: true; // `flex-wrap: wrap`
+  wrap?: boolean; // `flex-wrap: wrap`
 };
 ```
 

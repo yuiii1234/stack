@@ -1,4 +1,11 @@
+/**
+ * Spacing scale used for layout gaps and paddings.
+ * Values represent pixel-based increments (e.g., 8 = 8px).
+ * Use `true` to apply a the default gap (8px).
+ * You can set the default gap using `setDefaultGap()`.
+ */
 export type Gap =
+  | 0
   | 1
   | 2
   | 4
