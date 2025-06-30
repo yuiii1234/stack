@@ -67,6 +67,16 @@ import Stack from '@nkzw/stack/native';
 </Stack>;
 ```
 
+If you are using NativeWind, `<Stack />` will automatically support `className`:
+
+```tsx
+<Stack vertical gap={16} className="rounded-md border border-gray-300">
+  <Text>Apple</Text>
+  <Text>Banana</Text>
+  <Text>Kiwi</Text>
+</Stack>
+```
+
 ### Padding
 
 ```tsx

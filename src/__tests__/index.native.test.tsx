@@ -13,7 +13,7 @@ const flattenStyle = (style: StyleProp<ViewStyle>) =>
 vi.mock('react-native', () => {
   return {
     View: ({ children, style, ...props }: ViewProps) =>
-      createElement('View', { ...props, style: flattenStyle(style) }, children),
+      createElement('view', { ...props, style: flattenStyle(style) }, children),
   };
 });
 

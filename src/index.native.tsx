@@ -5,7 +5,7 @@ import { View, ViewStyle } from 'react-native';
 export { setDefaultGap, type Gap } from './Gap.tsx';
 export { type StackProps } from './Types.js';
 
-export default function Stack<Component extends ElementType = 'div'>({
+let Stack = function Stack<Component extends ElementType = 'div'>({
   alignCenter,
   alignEnd,
   alignStart,
@@ -140,4 +140,19 @@ export default function Stack<Component extends ElementType = 'div'>({
 
   const Component = as || View;
   return <Component style={[baseStyle, style]} {...props} />;
+};
+
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { cssInterop } = require('nativewind');
+
+  Stack = cssInterop(Stack, {
+    className: {
+      target: 'style',
+    },
+  });
+} catch {
+  /* empty */
 }
+
+export default Stack;
