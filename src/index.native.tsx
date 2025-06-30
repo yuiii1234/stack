@@ -1,11 +1,33 @@
-import { ElementType, useMemo } from 'react';
-import { StackProps } from './Types.js';
+import { ComponentProps, ComponentType, ElementType, useMemo } from 'react';
 import { resolveGap } from './Gap.tsx';
-import { View, ViewStyle } from 'react-native';
+import { View, ViewProps, ViewStyle } from 'react-native';
+import {
+  AcceptsStyle,
+  AsProp,
+  PropsToOmit,
+  StackPropsInternal,
+} from './Types.js';
 export { setDefaultGap, type Gap } from './Gap.tsx';
-export { type StackProps } from './Types.js';
 
-let Stack = function Stack<Component extends ElementType = 'div'>({
+type ViewWithClassName = ViewProps & {
+  className?: string;
+};
+
+export type StackProps<
+  Component extends ElementType = ComponentType<ViewWithClassName>,
+> =
+  AcceptsStyle<Component> extends never
+    ? never
+    : AsProp<Component> &
+        StackPropsInternal &
+        Omit<
+          ComponentProps<Component>,
+          PropsToOmit<Component, StackPropsInternal>
+        >;
+
+let Stack = function Stack<
+  Component extends ElementType = ComponentType<ViewWithClassName>,
+>({
   alignCenter,
   alignEnd,
   alignStart,

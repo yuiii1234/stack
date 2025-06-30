@@ -1,8 +1,22 @@
-import { CSSProperties, ElementType, useMemo } from 'react';
-import { StackProps } from './Types.js';
+import { ComponentProps, CSSProperties, ElementType, useMemo } from 'react';
+import {
+  AcceptsStyle,
+  AsProp,
+  PropsToOmit,
+  StackPropsInternal,
+} from './Types.js';
 import { resolveGap } from './Gap.tsx';
 export { setDefaultGap, type Gap } from './Gap.tsx';
-export { type StackProps } from './Types.js';
+
+export type StackProps<Component extends ElementType = 'div'> =
+  AcceptsStyle<Component> extends never
+    ? never
+    : AsProp<Component> &
+        StackPropsInternal &
+        Omit<
+          ComponentProps<Component>,
+          PropsToOmit<Component, StackPropsInternal>
+        >;
 
 export default function Stack<Component extends ElementType = 'div'>({
   alignCenter,

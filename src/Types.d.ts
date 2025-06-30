@@ -1,7 +1,7 @@
 import { ElementType, ComponentProps, ReactNode } from 'react';
 import { Gap } from './Gap.tsx';
 
-type StackPropsInternal = {
+export type StackPropsInternal = {
   alignCenter?: true;
   alignEnd?: true;
   alignStart?: true;
@@ -28,21 +28,12 @@ type StackPropsInternal = {
   verticalPadding?: Gap;
 };
 
-type AcceptsStyle<C extends ElementType> =
+export type AcceptsStyle<C extends ElementType> =
   'style' extends keyof ComponentProps<C> ? C : never;
 
-type AsProp<Component extends ElementType> = { as?: Component };
-type PropsToOmit<
+export type AsProp<Component extends ElementType> = { as?: Component };
+
+export type PropsToOmit<
   Component extends ElementType,
   Props,
 > = keyof (AsProp<Component> & Props);
-
-export type StackProps<Component extends ElementType = 'div'> =
-  AcceptsStyle<Component> extends never
-    ? never
-    : AsProp<Component> &
-        StackPropsInternal &
-        Omit<
-          ComponentProps<Component>,
-          PropsToOmit<Component, StackPropsInternal>
-        >;

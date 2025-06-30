@@ -297,9 +297,9 @@ test('renders with multiple props combined', () => {
   `);
 });
 
-test('passes through HTML attributes', () => {
+test('passes through native attributes', () => {
   const { container } = render(
-    <Stack data-testid="stack" onClick={() => {}}>
+    <Stack collapsable={false} data-testid="stack">
       Content
     </Stack>,
   );
