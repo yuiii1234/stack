@@ -1,6 +1,11 @@
-import { ComponentProps, ComponentType, ElementType, useMemo } from 'react';
+import {
+  ComponentProps,
+  ComponentPropsWithRef,
+  ElementType,
+  useMemo,
+} from 'react';
 import { resolveGap } from './Gap.tsx';
-import { View, ViewProps, ViewStyle } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import {
   AcceptsStyle,
   AsProp,
@@ -10,13 +15,7 @@ import {
 import { resolveAlignment } from './Alignment.tsx';
 export { setDefaultGap, type Gap } from './Gap.tsx';
 
-type ViewWithClassName = ViewProps & {
-  className?: string;
-};
-
-export type StackProps<
-  Component extends ElementType = ComponentType<ViewWithClassName>,
-> =
+export type StackProps<Component extends ElementType = typeof View> =
   AcceptsStyle<Component> extends never
     ? never
     : AsProp<Component> &
@@ -24,11 +23,10 @@ export type StackProps<
         Omit<
           ComponentProps<Component>,
           PropsToOmit<Component, StackPropsInternal>
-        >;
+        > &
+        Partial<Pick<ComponentPropsWithRef<Component>, 'ref'>>;
 
-let Stack = function Stack<
-  Component extends ElementType = ComponentType<ViewWithClassName>,
->({
+let Stack = function Stack<Component extends ElementType = typeof View>({
   alignCenter,
   alignEnd,
   alignStart,
@@ -57,7 +55,7 @@ let Stack = function Stack<
   verticalPadding,
   wrap,
   ...props
-}: StackProps<Component>) {
+}: StackProps<Component> & { className?: string }) {
   const baseStyle = useMemo(() => {
     const baseStyle: ViewStyle = {
       alignContent: resolveAlignment(content),
@@ -178,3 +176,7 @@ try {
 }
 
 export default Stack;
+
+export const VStack = <Component extends ElementType = 'div'>(
+  props: StackProps<Component> & { vertical?: never },
+) => <Stack {...props} vertical />;

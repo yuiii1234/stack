@@ -283,6 +283,7 @@ test('renders with custom style', () => {
 
 test('renders with className', () => {
   const { container } = render(<Stack className="custom-class">Content</Stack>);
+
   expect(container.firstChild).toMatchInlineSnapshot(`
     <view
       class="custom-class"
@@ -640,4 +641,17 @@ test('does not work if the component does not have a style prop', () => {
     </view>
   `,
   );
+});
+
+test('supports the `ref` prop', () => {
+  const ref = { current: null };
+  const { container } = render(<Stack ref={ref}>Content</Stack>);
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <view
+      style="flex-direction: row; flex-wrap: nowrap; justify-content: flex-start;"
+    >
+      Content
+    </view>
+  `);
 });

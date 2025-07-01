@@ -136,6 +136,18 @@ If you are using NativeWind, `<Stack />` will automatically support `className`:
 </Stack>
 ```
 
+There is also a shorthand for vertical stacks:
+
+```tsx
+import { VStack } from '@nkzw/stack';
+
+<VStack gap={16}> // Same as `<Stack vertical gap={16}>`.
+  <div>Apple</div>
+  <div>Banana</div>
+  <div>Kiwi</div>
+</VStack>;
+```
+
 ### Padding
 
 ```tsx

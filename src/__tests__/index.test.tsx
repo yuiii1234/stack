@@ -1,6 +1,6 @@
 import { beforeEach, expect, test } from 'vitest';
 import { render } from '@testing-library/react';
-import Stack, { setDefaultGap } from '../index.tsx';
+import Stack, { setDefaultGap, VStack } from '../index.tsx';
 import { CSSProperties } from 'react';
 
 beforeEach(() => {
@@ -658,4 +658,42 @@ test('does not work if the component does not have a style prop', () => {
     </a>
   `,
   );
+});
+
+test('exports a VStack component that is vertical by default', () => {
+  const { container } = render(<VStack>Content</VStack>);
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      style="display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;"
+    >
+      Content
+    </div>
+  `);
+});
+
+test('VStack does not support a vertical prop', () => {
+  // @ts-expect-error
+  const { container } = render(<VStack vertical={false}>Content</VStack>);
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      style="display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;"
+    >
+      Content
+    </div>
+  `);
+});
+
+test('supports the `ref` prop', () => {
+  const ref = { current: null };
+  const { container } = render(<Stack ref={ref}>Content</Stack>);
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: flex-start;"
+    >
+      Content
+    </div>
+  `);
 });

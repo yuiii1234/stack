@@ -157,3 +157,7 @@ export default function Stack<Component extends ElementType = 'div'>({
   const Component = as || 'div';
   return <Component style={{ ...baseStyle, ...style }} {...props} />;
 }
+
+export const VStack = <Component extends ElementType = 'div'>(
+  props: StackProps<Component> & { vertical?: never },
+) => <Stack {...props} vertical />;
