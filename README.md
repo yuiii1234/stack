@@ -5,11 +5,13 @@ _Zero-dependency, type-safe Stack component for streamlining flexbox usage in Re
 You always end up with visual clutter and boilerplate when using flexbox, no matter which styling solution you choose. `<Stack />` supports all flexbox properties directly as named props, making your flexbox components visually cleaner and easier to read. For most use cases, you'll only need prop shorthands like `gap`, `vertical`, `center`, and `padding`:
 
 ```tsx
+import Stack from '@nkzw/stack';
+
 <Stack vertical gap center>
-  <div>Apple</div>
-  <View>Banana</View>
+  <div>Apple</div> // Use on web
+  <View>Banana</View> // Use in React Native
   <Item>Kiwi</Item>
-</Stack>
+</Stack>;
 ```
 
 Other benefits include:
