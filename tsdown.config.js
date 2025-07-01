@@ -1,7 +1,12 @@
 import { defineConfig } from 'tsdown';
 
 export default defineConfig({
-  dts: true,
+  dts: {
+    compilerOptions: {
+      removeComments: false,
+    },
+    isolatedDeclarations: false,
+  },
   format: 'esm',
   outDir: './lib',
   outputOptions: {
