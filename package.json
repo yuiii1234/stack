@@ -1,6 +1,6 @@
 {
   "name": "@nkzw/stack",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Zero-dependency, type-safe Stack component for streamlining flexbox usage in React & React Native.",
   "homepage": "https://github.com/nkzw-tech/stack",
   "repository": {
@@ -57,8 +57,8 @@
   },
   "peerDependencies": {
     "nativewind": "^4.1.23",
-    "react": "^19.0.0",
-    "react-native": "^0.78.0"
+    "react": ">=17.0.0",
+    "react-native": ">=0.67.0"
   },
   "peerDependenciesMeta": {
     "nativewind": {
